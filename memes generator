@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meme Generator</title>
+    <style>
+        /* Add your styles here */
+        #meme-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .meme {
+            position: relative;
+            display: inline-block;
+        }
+
+        .top-text,
+        .bottom-text {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px #000;
+        }
+
+        .top-text {
+            top: 10px;
+        }
+
+        .bottom-text {
+            bottom: 10px;
+        }
+
+        /* Style your form and input fields as needed */
+    </style>
+</head>
+<body>
+    <div id="meme-container">
+        <!-- Display generated meme here -->
+    </div>
+
+    <form id="meme-form">
+        <!-- Input fields for text, image URL, etc. -->
+        <input type="text" id="top-text" placeholder="Top text">
+        <input type="text" id="bottom-text" placeholder="Bottom text">
+        <input type="text" id="image-url" placeholder="Image URL">
+
+        <!-- Button to generate meme -->
+        <button type="button" onclick="generateMeme()">Generate Meme</button>
+    </form>
+
+    <script>
+        // JavaScript logic
+        let topText = "";
+        let bottomText = "";
+        let imageUrl = "";
+
+        function updateInputs() {
+            topText = document.getElementById("top-text").value;
+            bottomText = document.getElementById("bottom-text").value;
+            imageUrl = document.getElementById("image-url").value;
+        }
+
+        function generateMeme() {
+            updateInputs();
+
+            if (topText && bottomText && imageUrl) {
+                const memeContainer = document.getElementById("meme-container");
+                memeContainer.innerHTML = `
+                    <div class="meme">
+                        <img src="${imageUrl}" alt="Meme Image">
+                        <div class="top-text">${topText}</div>
+                        <div class="bottom-text">${bottomText}</div>
+                    </div>
+                `;
+            } else {
+                alert("Please provide all required information.");
+            }
+        }
+    </script>
+</body>
+</html>
